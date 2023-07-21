@@ -6,8 +6,9 @@ $(document).ready(function() {
     const followersElement = $('#followers');
     const followingElement = $('#following');
     const linkElement = $('#link');
+    const request= $.ajax('https://api.github.com/users/FelipeMoraesPalomo');
 
-    $.ajax('https://api.github.com/users/FelipeMoraesPalomo')
+    request
     .done(function(json){
         nameElement.text(json.name)
         usernameElement.text(json.login)
@@ -16,5 +17,7 @@ $(document).ready(function() {
         followersElement.text(json.followers)
         reposElement.text(json.public_repos)
         linkElement.attr('href', json.html_url)
+    }).fail(function(){
+        alert("Ocorreu um erro inesperado, tente novamente mais tarde.")
     })
 })
